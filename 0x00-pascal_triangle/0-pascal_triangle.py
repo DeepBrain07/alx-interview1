@@ -1,14 +1,18 @@
 #!/usr/bin/python3
 """This module defines the 'pascal_triangle' function"""
+
+
 def pascal_triangle(n):
     """This function creates a pascal triangle"""
-    # check if n <= 0
+
+# check if n <= 0
     if n <= 0:
         return []
 
     LST = []
     lst = [0, 1, 0]
     LST.append([1])
+
     for _ in range(n - 1):
         new_lst = [0]
         for j in range(len(lst)):
