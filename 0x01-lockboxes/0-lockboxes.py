@@ -4,16 +4,16 @@
 
 def canUnlockAll(boxes):
     """ This function determines if all the boxes can be opened """
-    lst = []
-    # append the indexes of each element to 'lst'
-    for b in range(1, len(boxes) + 1):
-        lst.append(b)
-    # check if each element is present in the list
-    for i in range(len(boxes)):
-        for j in range(len(boxes[i])):
-            if boxes[i][j] in lst:
-                lst.remove(boxes[i][j])
-
-    if lst == []:
-        return True
-    return False
+    lockedBoxes = []
+    for k in range(1, len(boxes)):
+        lockedBoxes.append(k)
+    unlockedKeys = boxes[0]
+    keys = unlockedKeys
+    for i in range(1, len(boxes)):
+        for j in unlockedKeys:
+            if j == i or j in lockedBoxes:
+                lockedBoxes.remove(i)
+                unlockedKeys = unlockedKeys + boxes[i]
+                break
+        keys = keys + boxes[i]
+    return all(element in unlockedKeys for element in keys)
