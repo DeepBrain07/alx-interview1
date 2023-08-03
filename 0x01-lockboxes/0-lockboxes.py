@@ -16,4 +16,6 @@ def canUnlockAll(boxes):
                 unlockedKeys = unlockedKeys + boxes[i]
                 break
         keys = keys + boxes[i]
-    return all(element in unlockedKeys for element in keys)
+    if lockedBoxes == []:
+        return True
+    return False
