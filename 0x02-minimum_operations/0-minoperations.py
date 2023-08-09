@@ -25,9 +25,9 @@ def minOperations(n: int) -> int:
 
     def paste(lst, lst2, counter):
         """ This function pastes """
-        lst += lst2
+        lst = lst + lst2
         counter += 1
-        return {'lst': lst, 'counter': counter}
+        return {'lst': lst, 'lst2': lst2, 'counter': counter}
 
     if (n < 3) and (n != 2):
         return 0
@@ -49,8 +49,8 @@ def minOperations(n: int) -> int:
             if len(lst) == n:
                 return counter
             elif len(lst) > n:
-                return counter
-            if (len(lst + lst) <= n) and (n % len(lst + lst) == 0):
+                return 1000
+            if (len(lst + lst) <= n) and (n % (len(lst) + len(lst)) == 0):
                 values = copy_paste(lst, counter)
                 lst2 = lst
                 lst = values['lst']
@@ -58,4 +58,5 @@ def minOperations(n: int) -> int:
             else:
                 values = paste(lst, lst2, counter)
                 lst = values['lst']
+                lst2 = values['lst2']
                 counter = values['counter']
