@@ -83,7 +83,9 @@ try:
                     for key, value in status_code_dict.items():
                         print(f"{key}: {value}")
 
-except KeyboardInterrupt as e:
+except Exception as e:
+    pass
+finally:
     print(f"File size: {file_size}")
     for key, value in status_code_dict.items():
         print(f"{key}: {value}")
