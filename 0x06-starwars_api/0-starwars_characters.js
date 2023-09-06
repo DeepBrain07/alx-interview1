@@ -4,24 +4,26 @@
 
 // const arg = process.argv[2];
 // const url = 'https://swapi-api.alx-tools.com/api/films/' + arg;
-// request(url, (err, res, body) => {
+// const getCharacters = async () => {
+//     request(url, (err, res, body) => {
 //   if (!err && res.statusCode === 200) {
 //     const data = JSON.parse(body);
 //     const charactersLink = data.characters;
-//     charactersLink.forEach(element => {
-//       request(element, (error, response, body_) => {
+//     for (const link of charactersLink) {
+//       await request(element, (error, response, body_) => {
 //         if (!error && response.statusCode === 200) {
 //           const data_ = JSON.parse(body_);
 //           console.log(data_.name);
 //         }
 //       });
-//     });
+//     };
 //   } else {
 //     console.log('An Error Occurred!');
 //   }
-// });
+// })};
 
-const request = require('request-promise');
+let request = require('request');
+request = require('request-promise');
 
 const arg = process.argv[2];
 const url = 'https://swapi-api.alx-tools.com/api/films/' + arg;
