@@ -2,29 +2,30 @@
 
 const request = require('request');
 
-const arg = process.argv[2];
-const url = 'https://swapi-api.alx-tools.com/api/films/' + arg;
+const movieId = process.argv[2];
+const movieEndpoint = 'https://swapi-api.alx-tools.com/api/films/' + movieId;
 
-const getCharacters = (index, charactersLink) => {
-  if (index >= charactersLink.length) {
+function sendRequest (characterList, index) {
+  if (characterList.length === index) {
     return;
   }
-  request(charactersLink[index], (err, res, body) => {
-    if (err) {
-      console.log('An Error Occured!');
+
+  request(characterList[index], (error, response, body) => {
+    if (error) {
+      console.log(error);
     } else {
       console.log(JSON.parse(body).name);
-      getCharacters(index + 1, charactersLink);
+      sendRequest(characterList, index + 1);
     }
   });
-};
+}
 
-request(url, (err, res, body) => {
-  if (!err && res.statusCode === 200) {
-    const data = JSON.parse(body);
-    getCharacters(0, data.characters);
+request(movieEndpoint, (error, response, body) => {
+  if (error) {
+    console.log(error);
   } else {
-    console.log('An Error Occurred!');
-    return [];
+    const characterList = JSON.parse(body).characters;
+
+    sendRequest(characterList, 0);
   }
 });
